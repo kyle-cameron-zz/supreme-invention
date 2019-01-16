@@ -1,0 +1,40 @@
+<html>
+<body>
+<div>
+    <h2>Welcome to game: {{ game.game_name }}</h2>
+    <h3>{{ message }}</h3>
+</div>
+
+<div>
+    <h3>Dealer Cards</h3>
+    {% if game.dealer_cards |length < 1 %}
+        <p>The dealer has no cards. Deal a new hand.</p>
+    {% else %}
+        {% for card in game.dealer_cards %}
+            <img src={{ card['image'] }} />
+        {% endfor %}
+    {% endif %}
+</div>
+
+<div>
+    <h3>Your Cards</h3>
+    {% if game.player_cards |length < 1 %}
+        <p>You have no cards. Deal a new hand.</p>
+    {% else %}
+        {% for card in game.player_cards %}
+            <img src={{ card['image'] }} />
+        {% endfor %}
+    {% endif %}
+</div>
+
+<div>
+    <h4>What would you like to do?</h4>
+    <button>Deal New Hand</button>
+    <button>Stand</button>
+    <button>Hit</button>
+    <button>Double</button>
+    <button>Split</button>
+</div>
+
+</body>
+</html>
