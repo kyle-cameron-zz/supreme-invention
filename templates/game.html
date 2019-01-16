@@ -29,11 +29,12 @@
 
 <div>
     <h4>What would you like to do?</h4>
-    <button>Deal New Hand</button>
-    <button>Stand</button>
-    <button>Hit</button>
-    <button>Double</button>
-    <button>Split</button>
+    <form action='/games/{{ game.game_name }}/move' method='post'>
+        <button name="deal" value="Deal">Deal New Hand</button>
+        <button name="stand" value="Stand">Stand</button>
+        <button name="hit" value="Hit">Hit</button>
+        <button name="double" value="Double">Double</button>
+    </form>
 </div>
 
 </body>

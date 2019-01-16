@@ -40,31 +40,17 @@ def show_game(game_name):
     return render_template('game.html', game=game)
 
 
-# deal new hand
-@app.route('/games/<game_name>/deal')
-def deal(game_name):
-    return 'Game name {}'.format(game_name)
+# make move
+@app.route('/games/<game_name>/move', methods=['POST'])
+def move(game_name):
+    message = ''
+    if 'deal' in request.form:
+        message = all_games[game_name].deal()
+    elif 'stand' in request.form:
+        message = all_games[game_name].stand()
+    elif 'hit' in request.form:
+        message = all_games[game_name].hit()
+    elif 'double' in request.form:
+        message = all_games[game_name].double()
 
-
-# stand
-@app.route('/games/<game_name>/stand')
-def stand(game_name):
-    return 'Game name {}'.format(game_name)
-
-
-# hit
-@app.route('/games/<game_name>/hit')
-def hit(game_name):
-    return 'Game name {}'.format(game_name)
-
-
-# double
-@app.route('/games/<game_name>/double')
-def double(game_name):
-    return 'Game name {}'.format(game_name)
-
-
-# split
-@app.route('/games/<game_name>/split')
-def split(game_name):
-    return 'Game name {}'.format(game_name)
+    return render_template('game.html', game=all_games[game_name], message=message)
